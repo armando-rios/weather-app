@@ -3,12 +3,269 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Weather App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <!-- Tailwind is linked via CDN here for development, use the compiled version for production -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-  <h1 class="text-blue-500">Weather App</h1>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Mobile menu button (visible only on small screens) -->
+  <div
+    class="lg:hidden fixed top-0 left-0 z-40 w-full bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+    <h1 class="text-xl font-semibold">Weather App</h1>
+    <button id="mobile-menu-button" class="p-2 rounded-md text-gray-500 hover:bg-gray-100">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="flex flex-col lg:flex-row h-screen overflow-hidden">
+    <!-- Sidebar - hidden on mobile until toggled -->
+    <div id="sidebar"
+      class="hidden lg:flex lg:w-64 bg-white border-r border-gray-200 flex-col h-screen lg:h-auto fixed inset-y-0 left-0 z-30 lg:relative lg:z-0 pt-16 lg:pt-0 overflow-y-auto">
+      <!-- Search -->
+      <div class="p-4 border-b border-gray-200">
+        <div class="flex items-center bg-gray-100 rounded-lg p-2">
+          <input id="search-input" type="text" placeholder="Search for a city..."
+            class="bg-transparent border-none flex-grow px-2 text-gray-700 placeholder-gray-500 focus:outline-none" />
+          <button id="search-button" class="p-1 rounded-full hover:bg-gray-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-gray-500">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Saved Locations -->
+      <div class="p-4 border-b border-gray-200">
+        <h3 class="text-sm font-medium text-gray-500 mb-2">SAVED LOCATIONS</h3>
+        <div id="saved-locations" class="space-y-3">
+          <!-- Saved locations will be inserted here dynamically -->
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="p-4 flex-grow">
+        <h3 class="text-sm font-medium text-gray-500 mb-2">MENU</h3>
+        <div class="space-y-1">
+          <button id="forecast-btn" class="w-full p-2 text-left rounded-lg flex items-center bg-blue-50 text-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            Forecast
+          </button>
+          <button id="radar-btn" class="w-full p-2 text-left rounded-lg flex items-center hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            </svg>
+            Radar & Maps
+          </button>
+          <button id="settings-btn" class="w-full p-2 text-left rounded-lg flex items-center hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
+            </svg>
+            Settings
+          </button>
+        </div>
+      </div>
+
+      <!-- App Info Footer -->
+      <div class="p-4 border-t border-gray-200 text-xs text-gray-400">
+        <p>Weather App v1.0</p>
+        <p>Last updated: March 11, 2025</p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-grow flex flex-col overflow-hidden mt-16 lg:mt-0">
+      <!-- Header - This will have some dynamic content but the structure is static -->
+      <div class="bg-white border-b border-gray-200 p-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 id="current-location" class="text-2xl font-semibold">Loading...</h1>
+            <p id="current-date" class="text-gray-500">Loading date...</p>
+          </div>
+          <div class="flex items-center mt-2 sm:mt-0">
+            <div id="current-icon" class="w-9 h-9"></div>
+            <div class="ml-2">
+              <div id="current-temp" class="text-3xl font-bold">--°</div>
+              <div id="current-condition" class="text-gray-500">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Area - Container for dynamic content -->
+      <div id="main-content" class="flex-grow overflow-auto p-4">
+        <!-- This section will be populated dynamically -->
+        <div id="loading-indicator" class="flex items-center justify-center h-full">
+          <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Templates for dynamic content -->
+  <template id="today-highlights-template">
+    <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+      <h2 class="text-xl font-semibold mb-4">Today's Highlight</h2>
+      <div class="flex flex-wrap -mx-2" id="highlights-container">
+        <!-- Highlights will be inserted here -->
+      </div>
+    </div>
+  </template>
+
+  <template id="highlight-item-template">
+    <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4">
+      <div class="bg-blue-50 rounded-lg p-4 h-full">
+        <div class="flex items-center text-blue-600 mb-2">
+          <span class="highlight-icon mr-2"></span>
+          <span class="highlight-title font-medium"></span>
+        </div>
+        <p class="highlight-value text-3xl font-bold"></p>
+        <p class="highlight-subtitle text-gray-500"></p>
+      </div>
+    </div>
+  </template>
+
+  <template id="hourly-forecast-template">
+    <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+      <h2 class="text-xl font-semibold mb-4">Hourly Forecast</h2>
+      <div class="overflow-x-auto">
+        <div class="flex space-x-6 min-w-max" id="hourly-container">
+          <!-- Hourly items will be inserted here -->
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="hourly-item-template">
+    <div class="flex flex-col items-center">
+      <p class="hourly-time text-sm font-medium"></p>
+      <div class="hourly-icon my-2"></div>
+      <p class="hourly-temp text-lg font-bold"></p>
+      <p class="hourly-precip text-xs text-gray-500"></p>
+    </div>
+  </template>
+
+  <template id="daily-forecast-template">
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h2 class="text-xl font-semibold mb-4">7-Day Forecast</h2>
+      <div id="daily-container" class="overflow-hidden">
+        <!-- Daily items will be inserted here -->
+      </div>
+    </div>
+  </template>
+
+  <template id="daily-item-template">
+    <div class="flex flex-wrap md:flex-nowrap items-center py-3 border-b border-gray-100 last:border-0">
+      <div class="day-name w-full md:w-1/6 font-medium"></div>
+      <div class="day-icon w-1/4 md:w-1/6 flex justify-center"></div>
+      <div class="day-condition w-1/4 md:w-1/6 text-center capitalize text-sm"></div>
+      <div class="day-precip w-1/4 md:w-1/6 text-center text-sm"></div>
+      <div class="w-1/4 md:w-2/6 flex items-center mt-2 md:mt-0">
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="temp-range bg-gradient-to-r from-blue-500 to-red-500 h-2 rounded-full"></div>
+        </div>
+      </div>
+      <div class="w-full md:w-1/6 flex justify-between md:justify-end md:space-x-4 mt-2 md:mt-0">
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="text-red-500 mr-1">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+          <span class="day-high"></span>
+        </div>
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="text-blue-500 mr-1">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+          <span class="day-low"></span>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Error template -->
+  <template id="error-template">
+    <div class="bg-red-50 text-red-800 p-4 rounded-lg shadow-sm">
+      <div class="flex flex-col sm:flex-row">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="mr-2 mb-2 sm:mb-0">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <div>
+          <h3 class="font-medium">Error</h3>
+          <p class="error-message mt-1"></p>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Script tag for your bundled JS -->
+  <script src="./bundle.js" defer></script>
+
+  <script>
+    // Simple mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const sidebar = document.getElementById('sidebar');
+
+      mobileMenuButton.addEventListener('click', function () {
+        sidebar.classList.toggle('hidden');
+      });
+
+      // Close sidebar on mobile when clicking outside
+      document.addEventListener('click', function (event) {
+        const isClickInsideSidebar = sidebar.contains(event.target);
+        const isClickOnMenuButton = mobileMenuButton.contains(event.target);
+
+        if (!isClickInsideSidebar && !isClickOnMenuButton && window.innerWidth < 1024 && !sidebar.classList.contains('hidden')) {
+          sidebar.classList.add('hidden');
+        }
+      });
+
+      // Handle resize events
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 1024) {
+          sidebar.classList.remove('hidden');
+        } else {
+          sidebar.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
