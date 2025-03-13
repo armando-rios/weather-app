@@ -1,7 +1,7 @@
 import "./index.css"
-import { initSaveLocationController } from "./controllers/saveLocationsController.js"
+import { initSavedLocationsController } from "./controllers/savedLocationsController.js"
 import { initSearchController } from "./controllers/searchController.js"
 
-initSaveLocationController()
+initSavedLocationsController()
 initSearchController()
 
