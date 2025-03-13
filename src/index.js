@@ -1,11 +1,7 @@
 import "./index.css"
-import { renderWeather } from "./views/renderWeather.js"
+import { initSaveLocationController } from "./controllers/saveLocationsController.js"
+import { initSearchController } from "./controllers/searchController.js"
 
-const searchForm = document.getElementById("search-form")
-const searchInput = document.getElementById("search-input")
+initSaveLocationController()
+initSearchController()
 
-searchForm.addEventListener("submit", async (e) => {
-  e.preventDefault()
-  renderWeather(searchInput.value)
-  searchInput.value = ""
-})
