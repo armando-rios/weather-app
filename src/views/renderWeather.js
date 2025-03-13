@@ -1,4 +1,5 @@
 import { getWeather } from "../api/weatherService.js"
+import { SavedLocations } from "../components/SavedLocations.js"
 import { saveLocation } from "../utils/storage.js"
 
 export const renderWeather = async (value) => {
@@ -11,7 +12,8 @@ export const renderWeather = async (value) => {
       currentConditions,
     } = data
 
-    saveLocation(resolvedAddress)
+    const savedLocations = saveLocation(resolvedAddress)
+    SavedLocations(savedLocations)
 
     const currentLocation = document.getElementById("current-location")
     const currentTemp = document.getElementById("current-temp")
