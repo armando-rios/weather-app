@@ -1,7 +1,7 @@
 export const saveLocation = (location) => {
   const savedLocations = JSON.parse(localStorage.getItem("savedLocations")) || []
   if (savedLocations.includes(location)) {
-    return
+    return savedLocations
   }
   savedLocations.push(location)
   localStorage.setItem("savedLocations", JSON.stringify(savedLocations))
