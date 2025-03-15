@@ -1,3 +1,4 @@
+import { renderWeather } from '../views/renderWeather.js';
 import { WeatherIcon } from './WeatherIcon.js';
 
 export const Location = (locationName, weatherData) => {
@@ -34,6 +35,10 @@ export const Location = (locationName, weatherData) => {
     tempSpan.innerText = `${Math.round(weatherData.currentConditions.temp)}°`;
     weatherContainer.appendChild(tempSpan);
   }
+
+  locationButton.addEventListener('click', () => {
+    renderWeather(locationName);
+  });
 
   locationButton.append(nameContainer, weatherContainer);
 
