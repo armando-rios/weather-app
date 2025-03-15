@@ -37,7 +37,11 @@ export const Location = (locationName, weatherData) => {
   }
 
   locationButton.addEventListener('click', () => {
-    renderWeather(locationName);
+    try {
+      renderWeather(locationName);
+    } catch (error) {
+      console.error('Error al cargar el clima para', locationName, ':', error);
+    }
   });
 
   locationButton.append(nameContainer, weatherContainer);
