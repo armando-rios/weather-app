@@ -1,6 +1,7 @@
 import { getWeather } from '../api/weatherService.js';
 import { SavedLocations } from '../components/SavedLocations.js';
 import { saveLocation } from '../utils/storage.js';
+import { WeatherIcon } from '../components/WeatherIcon.js';
 
 export const renderWeather = async value => {
   try {
@@ -16,7 +17,13 @@ export const renderWeather = async value => {
     const currentCondition = document.getElementById('current-condition');
 
     currentLocation.textContent = resolvedAddress;
-    currentTemp.textContent = currentConditions.temp + '°';
+    currentTemp.className = 'flex gap-2 text-3xl font-bold items-center';
+    currentTemp.innerHTML = '';
+    const tempSpan = document.createElement('span');
+    tempSpan.textContent = `${currentConditions.temp}°C`;
+    const icon = WeatherIcon(currentConditions.icon);
+    currentTemp.appendChild(icon);
+    currentTemp.appendChild(tempSpan);
     currentCondition.textContent = currentConditions.conditions;
   } catch (error) {
     const messages = document.getElementById('messages');
