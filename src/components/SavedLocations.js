@@ -1,10 +1,9 @@
 import { Location } from './Location.js';
-import { getWeather } from '../api/weatherService.js';
 
 const savedLocationsContainer = document.getElementById('saved-locations');
 
-export const SavedLocations = savedLocations => {
-  savedLocationsContainer.innerHTML = '';
+export const SavedLocations = (savedLocations, mode = 'add') => {
+  // savedLocationsContainer.innerHTML = '';
 
   if (!savedLocations || savedLocations.length === 0) {
     const emptyMessage = document.createElement('p');
@@ -14,20 +13,19 @@ export const SavedLocations = savedLocations => {
     return;
   }
 
-  savedLocations.forEach(async location => {
-    try {
-      const weatherData = await getWeather(location);
-
-      const locationComponent = Location(location, weatherData);
+  if (mode === 'init') {
+    savedLocationsContainer.innerHTML = '';
+    savedLocations.forEach(location => {
+      const locationComponent = Location(location);
       savedLocationsContainer.appendChild(locationComponent);
-    } catch (error) {
-      console.error('Error al cargar el clima para', location, ':', error);
-
-      // Componente de error
-      const errorComponent = document.createElement('div');
-      errorComponent.className = 'p-2 w-full text-red-500';
-      errorComponent.innerText = `Error al cargar ${location}`;
-      savedLocationsContainer.appendChild(errorComponent);
+    });
+  } else {
+    if (savedLocations.length === 1) {
+      savedLocationsContainer.innerHTML = '';
     }
-  });
+    const locationComponent = Location(
+      savedLocations[savedLocations.length - 1]
+    );
+    savedLocationsContainer.appendChild(locationComponent);
+  }
 };
