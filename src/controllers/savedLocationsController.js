@@ -3,5 +3,5 @@ import { SavedLocations } from '../components/SavedLocations.js';
 
 export const initSavedLocationsController = () => {
   const savedLocations = getSavedLocations();
-  SavedLocations(savedLocations);
+  SavedLocations(savedLocations, 'init');
 };
