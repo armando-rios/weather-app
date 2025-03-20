@@ -1,7 +1,8 @@
 import { renderWeather } from '../views/renderWeather.js';
+import { getWeather } from '../api/weatherService.js';
 import { WeatherIcon } from './WeatherIcon.js';
 
-export const Location = (locationName, weatherData) => {
+export const Location = locationName => {
   const locationButton = document.createElement('button');
   locationButton.className =
     'p-2 w-full flex justify-between items-center hover:bg-gray-100 rounded-md transition-colors';
@@ -12,29 +13,53 @@ export const Location = (locationName, weatherData) => {
   const name = document.createElement('p');
   name.className = 'font-medium text-left';
   name.innerText = locationName.slice(0, 20);
-
   nameContainer.appendChild(name);
-
-  if (weatherData.currentConditions.conditions) {
-    const conditionText = document.createElement('span');
-    conditionText.className = 'text-xs text-gray-500';
-    conditionText.innerText = weatherData.currentConditions.conditions;
-    nameContainer.appendChild(conditionText);
-  }
 
   const weatherContainer = document.createElement('div');
   weatherContainer.className = 'flex items-center';
 
-  const iconCondition = weatherData.currentConditions.icon;
-  const weatherIcon = WeatherIcon(iconCondition);
-  weatherContainer.appendChild(weatherIcon);
+  const loadingText = document.createElement('span');
+  loadingText.className = 'text-xs text-gray-500';
+  loadingText.innerText = 'Cargando...';
+  nameContainer.appendChild(loadingText);
 
-  if (weatherData.currentConditions.temp !== undefined) {
-    const tempSpan = document.createElement('span');
-    tempSpan.className = 'ml-2 font-semibold';
-    tempSpan.innerText = `${Math.round(weatherData.currentConditions.temp)}°`;
-    weatherContainer.appendChild(tempSpan);
-  }
+  locationButton.append(nameContainer, weatherContainer);
+
+  const fetchWeatherData = async () => {
+    try {
+      const weatherData = await getWeather(locationName);
+
+      if (weatherData.currentConditions?.conditions) {
+        loadingText.innerText = weatherData.currentConditions.conditions;
+      } else {
+        nameContainer.removeChild(loadingText);
+      }
+
+      if (weatherData.currentConditions?.icon) {
+        const iconCondition = weatherData.currentConditions.icon;
+        const weatherIcon = WeatherIcon(iconCondition);
+        weatherContainer.appendChild(weatherIcon);
+      }
+
+      if (weatherData.currentConditions?.temp !== undefined) {
+        const tempSpan = document.createElement('span');
+        tempSpan.className = 'ml-2 font-semibold';
+        tempSpan.innerText = `${Math.round(weatherData.currentConditions.temp)}°`;
+        weatherContainer.appendChild(tempSpan);
+      }
+    } catch (error) {
+      console.error(
+        'Error al obtener datos del clima para',
+        locationName,
+        ':',
+        error
+      );
+      loadingText.innerText = 'Error al cargar datos';
+      loadingText.className = 'text-xs text-red-500';
+    }
+  };
+
+  fetchWeatherData();
 
   locationButton.addEventListener('click', () => {
     try {
@@ -43,8 +68,6 @@ export const Location = (locationName, weatherData) => {
       console.error('Error al cargar el clima para', locationName, ':', error);
     }
   });
-
-  locationButton.append(nameContainer, weatherContainer);
 
   return locationButton;
 };
