@@ -1,4 +1,4 @@
-import { WeatherIcon } from '../components/WeatherIcon.js';
+import { WeatherIcon } from './WeatherIcon.js';
 
 export const CurrentWeatherHeader = (resolvedAddress, currentConditions) => {
   const currentLocation = document.getElementById('current-location');
