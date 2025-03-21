@@ -1,7 +1,8 @@
 import { getWeather } from '../api/weatherService.js';
 import { SavedLocations } from '../components/SavedLocations.js';
 import { saveLocation } from '../utils/storage.js';
-import { WeatherIcon } from '../components/WeatherIcon.js';
+import { CurrentWeatherHeader } from '../components/CurrentWeatherHeader.js';
+import { ForecastSection } from '../components/ForecastSection.js';
 
 export const renderWeather = async value => {
   try {
@@ -11,20 +12,8 @@ export const renderWeather = async value => {
 
     const savedLocations = saveLocation(resolvedAddress);
     SavedLocations(savedLocations);
-
-    const currentLocation = document.getElementById('current-location');
-    const currentTemp = document.getElementById('current-temp');
-    const currentCondition = document.getElementById('current-condition');
-
-    currentLocation.textContent = resolvedAddress;
-    currentTemp.className = 'flex gap-2 text-3xl font-bold items-center';
-    currentTemp.innerHTML = '';
-    const tempSpan = document.createElement('span');
-    tempSpan.textContent = `${currentConditions.temp}°C`;
-    const icon = WeatherIcon(currentConditions.icon);
-    currentTemp.appendChild(icon);
-    currentTemp.appendChild(tempSpan);
-    currentCondition.textContent = currentConditions.conditions;
+    CurrentWeatherHeader(resolvedAddress, currentConditions);
+    ForecastSection(data);
   } catch (error) {
     const messages = document.getElementById('messages');
     messages.classList.remove('hidden');
