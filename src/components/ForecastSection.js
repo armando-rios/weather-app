@@ -1,4 +1,5 @@
 import { WeatherIcon } from './WeatherIcon.js';
+import { TodaySection } from './TodaySection.js';
 
 export const ForecastSection = data => {
   // this component render the forecast of the all days
@@ -8,6 +9,10 @@ export const ForecastSection = data => {
 
   const { days } = data;
   console.log(days);
+
+  const today = days.shift();
+
+  mainContent.append(TodaySection(today));
 
   days.forEach(day => {
     const { datetime, icon, temp, conditions } = day;
