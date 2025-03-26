@@ -1,3 +1,5 @@
+import { TodayCard } from './TodayCard.js';
+
 export const TodaySection = data => {
   const container = document.createElement('div');
   container.className =
@@ -10,16 +12,7 @@ export const TodaySection = data => {
   const weatherData = document.createElement('div');
   weatherData.className = 'flex items-center';
 
-  const box = document.createElement('div');
-  box.className =
-    'flex flex-col items-center p-2 gap-2 w-32 bg-blue-50 rounded-md';
-  const text = document.createElement('p');
-  const textData = document.createElement('p');
-  text.className = 'text-lg text-blue-500 font-semibold';
-  text.textContent = 'Feels Like';
-  textData.textContent = data.feelslike;
-
-  box.append(...[text, textData]);
+  const box = TodayCard('Feels Like', data.temp);
 
   weatherData.append(box);
 
