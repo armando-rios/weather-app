@@ -10,11 +10,14 @@ export const TodaySection = data => {
   title.innerText = "Today's Highlight";
 
   const weatherData = document.createElement('div');
-  weatherData.className = 'flex items-center';
+  weatherData.className = 'flex items-center gap-4';
 
-  const box = TodayCard('Feels Like', data.temp);
+  const feelsLike = TodayCard('Feels Like', data.temp);
+  const humidity = TodayCard('Humidity', data.humidity + '%');
+  const visibility = TodayCard('Visibility', data.visibility + ' km');
+  const wind = TodayCard('Wind', data.windspeed + ' km/h');
 
-  weatherData.append(box);
+  weatherData.append(...[feelsLike, humidity, visibility, wind]);
 
   container.append(...[title, weatherData]);
 
