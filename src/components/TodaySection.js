@@ -12,9 +12,9 @@ export const TodaySection = data => {
   const weatherData = document.createElement('div');
   weatherData.className = 'flex items-center';
 
-  const box = TodayCard('Feels Like', data.temp);
+  const feelsLike = TodayCard('Feels Like', data.temp);
 
-  weatherData.append(box);
+  weatherData.append(...[feelsLike]);
 
   container.append(...[title, weatherData]);
 
