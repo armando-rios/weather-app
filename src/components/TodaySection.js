@@ -15,8 +15,9 @@ export const TodaySection = data => {
   const feelsLike = TodayCard('Feels Like', data.temp);
   const humidity = TodayCard('Humidity', data.humidity + '%');
   const visibility = TodayCard('Visibility', data.visibility + ' km');
+  const wind = TodayCard('Wind', data.windspeed + ' km/h');
 
-  weatherData.append(...[feelsLike, humidity, visibility]);
+  weatherData.append(...[feelsLike, humidity, visibility, wind]);
 
   container.append(...[title, weatherData]);
 
