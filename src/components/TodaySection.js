@@ -13,8 +13,9 @@ export const TodaySection = data => {
   weatherData.className = 'flex items-center';
 
   const feelsLike = TodayCard('Feels Like', data.temp);
+  const humidity = TodayCard('Humidity', data.humidity + '%');
 
-  weatherData.append(...[feelsLike]);
+  weatherData.append(...[feelsLike, humidity]);
 
   container.append(...[title, weatherData]);
 
