@@ -10,7 +10,7 @@ export const TodaySection = data => {
   title.innerText = "Today's Highlight";
 
   const weatherData = document.createElement('div');
-  weatherData.className = 'flex items-center';
+  weatherData.className = 'flex items-center gap-4';
 
   const feelsLike = TodayCard('Feels Like', data.temp);
   const humidity = TodayCard('Humidity', data.humidity + '%');
