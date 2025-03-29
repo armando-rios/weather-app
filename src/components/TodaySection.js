@@ -18,9 +18,10 @@ export const TodaySection = data => {
   const wind = TodayCard('Wind', data.windspeed + ' km/h');
   const sunrise = TodayCard('Sunrise', data.sunrise);
   const sunset = TodayCard('Sunset', data.sunset);
+  const uv = TodayCard('Uv Index', data.uvindex);
 
   weatherData.append(
-    ...[feelsLike, humidity, visibility, wind, sunrise, sunset]
+    ...[feelsLike, humidity, visibility, wind, sunrise, sunset, uv]
   );
 
   container.append(...[title, weatherData]);
