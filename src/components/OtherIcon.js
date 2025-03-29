@@ -41,6 +41,14 @@ export const OtherIcon = name => {
     case 'sunset':
       setIcon = createElement(Sunset);
       break;
+    case 'uv index':
+      setIcon = createElement(Sun);
+      break;
+    case 'pressure':
+      setIcon = createElement(Cloud);
+      break;
+    default:
+      setIcon = createElement(Search);
   }
 
   setIcon.setAttribute('color', '#3b82f6');
