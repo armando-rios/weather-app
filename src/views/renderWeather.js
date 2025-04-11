@@ -5,9 +5,7 @@ import { ForecastSection } from '../components/ForecastSection.js';
 export const renderWeather = async value => {
   try {
     const data = await getWeather(value);
-    console.log(data);
     const { resolvedAddress, currentConditions } = data;
-
     CurrentWeatherHeader(resolvedAddress, currentConditions);
     ForecastSection(data);
   } catch (error) {
