@@ -14,9 +14,6 @@ import {
 
 export const OtherIcon = name => {
   const icon = name ? name.toLowerCase() : '';
-
-  console.log(icon);
-
   let setIcon;
 
   switch (icon) {
