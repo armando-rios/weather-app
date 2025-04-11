@@ -113,7 +113,6 @@ export const WeatherIcon = condition => {
 
     // Default para cualquier otro caso
     default:
-      console.log('Condición no reconocida:', icon);
       iconElement = createElement(Cloud);
       iconColor = colors.cloud;
   }
