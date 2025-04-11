@@ -1,6 +1,4 @@
 import { getWeather } from '../api/weatherService.js';
-import { SavedLocations } from '../components/SavedLocations.js';
-import { saveLocation } from '../utils/storage.js';
 import { CurrentWeatherHeader } from '../components/CurrentWeatherHeader.js';
 import { ForecastSection } from '../components/ForecastSection.js';
 
@@ -10,8 +8,6 @@ export const renderWeather = async value => {
     console.log(data);
     const { resolvedAddress, currentConditions } = data;
 
-    const savedLocations = saveLocation(resolvedAddress);
-    SavedLocations(savedLocations);
     CurrentWeatherHeader(resolvedAddress, currentConditions);
     ForecastSection(data);
   } catch (error) {
