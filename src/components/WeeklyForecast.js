@@ -3,13 +3,13 @@ import { WeatherIcon } from './WeatherIcon.js';
 export const WeeklyForecast = days => {
   const weaklyContainer = document.createElement('div');
   weaklyContainer.className =
-    'flex flex-col items-center bg-white justify-center p-4 items-start border border-gray-200 rounded-xl';
+    'flex flex-col h-80 overflow-auto items-center bg-white p-4 items-start border border-gray-200 rounded-xl';
 
   days.forEach(day => {
     const { datetime, icon, temp, conditions } = day;
 
     const dayContainer = document.createElement('div');
-    dayContainer.className = 'flex flex-col items-center justify-center p-4';
+    dayContainer.className = 'flex items-center justify-center p-4';
 
     const date = document.createElement('p');
     date.className = 'text-sm text-gray-500';
