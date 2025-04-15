@@ -13,6 +13,5 @@ export const ForecastSection = data => {
   const today = days.shift();
 
   mainContent.append(TodaySection(today));
-
   mainContent.append(WeeklyForecast(days));
 };
