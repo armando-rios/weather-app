@@ -8,7 +8,7 @@ export const WeeklyForecast = days => {
   days.forEach(day => {
     const { datetime, icon, temp, conditions } = day;
 
-    let weekDay = new Date(datetime).toLocaleString('es-ES', {
+    let weekDay = new Date(datetime).toLocaleString('en-EN', {
       weekday: 'long',
     });
 
