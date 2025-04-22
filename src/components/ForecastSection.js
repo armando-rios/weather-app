@@ -1,6 +1,7 @@
 import { WeatherIcon } from './WeatherIcon.js';
 import { TodaySection } from './TodaySection.js';
 import { WeeklyForecast } from './WeeklyForecast.js';
+import { HourlyForecast } from './HourlyForecast.js';
 
 export const ForecastSection = data => {
   const mainContent = document.getElementById('main-content');
@@ -13,5 +14,6 @@ export const ForecastSection = data => {
   const today = days.shift();
 
   mainContent.append(TodaySection(today));
+  mainContent.append(HourlyForecast(today));
   mainContent.append(WeeklyForecast(days));
 };
