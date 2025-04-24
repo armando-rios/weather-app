@@ -1,16 +1,18 @@
-import path from "path"
-import HtmlWebpackPlugin from "html-webpack-plugin"
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 
 export default {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    path: path.resolve(process.cwd(), "dist"),
-    clean: true
+    path: path.resolve(process.cwd(), 'dist'),
+    clean: true,
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
-      template: "./index.html"
-    })
+      template: './index.html',
+    }),
   ],
   module: {
     rules: [
@@ -18,17 +20,17 @@ export default {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "swc-loader"
-        }
+          loader: 'swc-loader',
+        },
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"]
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|git)$/i,
-        type: "asset/resource"
-      }
-    ]
-  }
-}
+        type: 'asset/resource',
+      },
+    ],
+  },
+};

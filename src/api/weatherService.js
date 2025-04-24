@@ -1,6 +1,4 @@
-import env from './config.js';
-
-const API_KEY = env.WEATHER_API;
+const API_KEY = process.env.WEATHER_API;
 
 export const getWeather = async place => {
   try {
