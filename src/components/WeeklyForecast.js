@@ -15,7 +15,7 @@ export const WeeklyForecast = days => {
     weekDay = weekDay.charAt(0).toUpperCase() + weekDay.slice(1);
 
     const dayContainer = document.createElement('div');
-    dayContainer.className = 'grid grid-cols-6 p-4 gap-2 w-full';
+    dayContainer.className = 'grid grid-cols-3 sm:grid-cols-5 p-4 gap-2 w-full';
 
     const date = document.createElement('p');
     date.className = 'text-sm text-gray-500';
@@ -28,7 +28,7 @@ export const WeeklyForecast = days => {
     const weatherIcon = WeatherIcon(iconCondition);
 
     const condition = document.createElement('p');
-    condition.className = 'text-sm text-gray-500';
+    condition.className = 'text-sm text-gray-500 max-sm:hidden';
     condition.innerText = conditions;
 
     weatherContainer.append(...[weatherIcon, condition]);

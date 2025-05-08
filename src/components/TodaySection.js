@@ -3,14 +3,14 @@ import { TodayCard } from './TodayCard.js';
 export const TodaySection = data => {
   const container = document.createElement('div');
   container.className =
-    'flex flex-col items-center bg-white justify-center p-4 items-start border border-gray-200 rounded-xl';
+    'flex flex-col items-center bg-white justify-center p-4 items-start border border-gray-200 rounded-xl overflow-x-auto w-full';
 
   const title = document.createElement('h3');
   title.className = 'text-xl font-semibold mb-2';
   title.innerText = "Today's Highlight";
 
   const weatherData = document.createElement('div');
-  weatherData.className = 'flex flex-wrap gap-4 justify-center m-auto';
+  weatherData.className = 'flex sm:flex-wrap gap-4 justify-center m-auto';
 
   const feelsLike = TodayCard('Feels Like', data.temp);
   const humidity = TodayCard('Humidity', data.humidity + '%');
