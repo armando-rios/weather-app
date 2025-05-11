@@ -2,7 +2,7 @@ const API_KEY = process.env.WEATHER_API;
 
 const searchCache = new Map();
 
-export const getWeather = async place => {
+export const getWeather = async (place = 'Tarija') => {
   if (!place.trim()) return [];
   if (searchCache.has(place)) {
     console.log('Using cache for: ', place);
