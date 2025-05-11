@@ -1,8 +1,7 @@
-import { apiPromise, getWeather } from '../api/weatherService.js';
+import { getWeather } from '../api/weatherService.js';
 import { saveLocation } from '../utils/storage.js';
 import { SavedLocations } from '../components/SavedLocations.js';
 import { renderWeather } from '../views/renderWeather.js';
-import { apiPromise, apiData } from '../api/weatherService.js';
 
 export const initSearchController = () => {
   const searchForm = document.getElementById('search-form');
@@ -10,15 +9,12 @@ export const initSearchController = () => {
 
   searchForm.addEventListener('submit', async e => {
     e.preventDefault();
-    apiPromise = null;
-    apiData = null;
 
     const value = await getWeather(searchInput.value);
-
     const { resolvedAddress } = value;
 
     const savedLocations = saveLocation(resolvedAddress);
-    renderWeather(value);
+    renderWeather(value.resolvedAddress);
     SavedLocations(savedLocations);
     searchInput.value = '';
   });
