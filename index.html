@@ -9,7 +9,7 @@
   <body class="bg-gray-100 text-gray-800">
     <!-- Mobile menu button (visible only on small screens) -->
     <div
-      class="lg:hidden fixed top-0 left-0 z-40 w-full bg-white border-b border-gray-200 p-4 flex items-center justify-between"
+      class="lg:hidden fixed top-0 left-0 z-30 w-full bg-white border-b border-gray-200 p-4 flex items-center justify-between"
     >
       <h1 class="text-xl font-semibold">Weather App</h1>
       <button
@@ -205,7 +205,8 @@
 
     <script>
       // Simple mobile menu toggle
-      document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', function (event) {
+        event.stopPropagation();
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const sidebar = document.getElementById('sidebar');
 
@@ -221,18 +222,8 @@
           if (
             !isClickInsideSidebar &&
             !isClickOnMenuButton &&
-            window.innerWidth < 1024 &&
             !sidebar.classList.contains('hidden')
           ) {
-            sidebar.classList.add('hidden');
-          }
-        });
-
-        // Handle resize events
-        window.addEventListener('resize', function () {
-          if (window.innerWidth >= 1024) {
-            sidebar.classList.remove('hidden');
-          } else {
             sidebar.classList.add('hidden');
           }
         });
