@@ -15,3 +15,43 @@
 :root {
   color-scheme: light dark;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-canvas text-ink font-sans antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-medium tracking-tight;
+}
+
+.label-mono {
+  @apply uppercase font-mono text-[11px] tracking-[0.18em] text-muted;
+}
+
+.hairline {
+  @apply border border-line;
+}
+
+/* Subtle custom scrollbar for refined aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
