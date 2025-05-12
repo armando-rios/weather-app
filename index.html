@@ -56,16 +56,29 @@
           <span class="label-mono mt-1 block">v1.0 · dashboard</span>
         </div>
         <!-- Search -->
-        <div class="p-4 border-b border-gray-200">
-          <form
-            id="search-form"
-            class="flex items-center bg-gray-100 rounded-lg p-2"
-          >
+        <div class="px-5 py-5 border-b border-line">
+          <form id="search-form" class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-muted shrink-0"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
             <input
               id="search-input"
               type="text"
-              placeholder="Search for a city..."
-              class="bg-transparent border-none flex-grow px-2 text-gray-700 placeholder-gray-500 focus:outline-none"
+              placeholder="search for a city…"
+              class="bg-transparent border-0 border-b border-line w-full py-2 text-sm text-ink placeholder-muted font-mono tracking-wide focus:outline-none focus:border-ink transition-colors"
             />
           </form>
         </div>
