@@ -5,22 +5,23 @@ import { WeatherIcon } from './WeatherIcon.js';
 export const Location = locationName => {
   const locationButton = document.createElement('button');
   locationButton.className =
-    'p-2 w-full flex justify-between items-center hover:bg-gray-100 rounded-md transition-colors';
+    'w-full flex items-center justify-between gap-3 px-2 py-2.5 hover:bg-canvas transition-colors rounded-md';
 
   const nameContainer = document.createElement('div');
-  nameContainer.className = 'flex flex-col text-start';
+  nameContainer.className = 'flex flex-col text-start gap-0.5 min-w-0';
 
   const name = document.createElement('p');
-  name.className = 'font-medium text-left';
+  name.className = 'font-medium text-sm text-ink text-left truncate';
   name.innerText = locationName.slice(0, 20);
   nameContainer.appendChild(name);
 
   const weatherContainer = document.createElement('div');
-  weatherContainer.className = 'flex items-center';
+  weatherContainer.className = 'flex items-center gap-2 shrink-0';
 
   const loadingText = document.createElement('span');
-  loadingText.className = 'text-xs text-gray-500';
-  loadingText.innerText = 'Cargando...';
+  loadingText.className =
+    'text-xs text-muted font-mono uppercase tracking-wider';
+  loadingText.innerText = 'Loading…';
   nameContainer.appendChild(loadingText);
 
   locationButton.append(nameContainer, weatherContainer);
@@ -43,7 +44,7 @@ export const Location = locationName => {
 
       if (weatherData.currentConditions?.temp !== undefined) {
         const tempSpan = document.createElement('span');
-        tempSpan.className = 'ml-2 font-semibold';
+        tempSpan.className = 'font-medium text-sm text-ink tabular-nums';
         tempSpan.innerText = `${Math.round(weatherData.currentConditions.temp)}°`;
         weatherContainer.appendChild(tempSpan);
       }
