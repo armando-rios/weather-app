@@ -203,21 +203,30 @@
         <!-- Header - This will have some dynamic content but the structure is static -->
         <div class="bg-canvas border-b border-line px-6 py-4 shrink-0">
           <div
-            class="flex flex-col sm:flex-row sm:items-center sm:justify-between"
+            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
           >
-            <div>
-              <h1 id="current-location" class="text-2xl font-semibold">
-                Loading...
+            <div class="flex flex-col gap-1">
+              <h1
+                id="current-location"
+                class="text-lg font-medium tracking-tight text-ink"
+              >
+                Loading…
               </h1>
-              <p id="current-date" class="text-gray-500 text-balance">
-                Loading date...
+              <p
+                id="current-date"
+                class="text-xs font-mono uppercase tracking-wider text-muted text-balance"
+              >
+                Loading date…
               </p>
             </div>
-            <div class="flex items-center mt-2 sm:mt-0">
-              <div class="ml-2">
-                <div id="current-temp" class="text-3xl font-bold"></div>
-                <div id="current-condition" class="text-gray-500">--</div>
-              </div>
+            <div class="flex items-center gap-3 sm:gap-4">
+              <div id="current-temp" class="flex gap-2 items-center"></div>
+              <p
+                id="current-condition"
+                class="text-xs font-mono uppercase tracking-wider text-muted"
+              >
+                --
+              </p>
             </div>
           </div>
         </div>
