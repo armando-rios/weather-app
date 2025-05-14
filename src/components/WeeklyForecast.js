@@ -3,7 +3,12 @@ import { WeatherIcon } from './WeatherIcon.js';
 export const WeeklyForecast = days => {
   const weaklyContainer = document.createElement('div');
   weaklyContainer.className =
-    'flex flex-col flex-1 overflow-auto items-center bg-white p-4 items-start border border-gray-200 rounded-xl';
+    'bg-surface border border-line rounded-lg px-2 py-2 w-full flex flex-col divide-y divide-line';
+
+  const title = document.createElement('h3');
+  title.className = 'label-mono px-2 py-2';
+  title.innerText = 'Weekly Forecast';
+  weaklyContainer.appendChild(title);
 
   days.forEach(day => {
     const { datetime, icon, temp, conditions } = day;
@@ -15,31 +20,36 @@ export const WeeklyForecast = days => {
     weekDay = weekDay.charAt(0).toUpperCase() + weekDay.slice(1);
 
     const dayContainer = document.createElement('div');
-    dayContainer.className = 'grid grid-cols-3 sm:grid-cols-5 p-4 gap-2 w-full';
+    dayContainer.className =
+      'w-full grid grid-cols-[1fr_auto_auto] items-center gap-4 px-4 py-3 hover:bg-canvas transition-colors rounded-md';
 
     const date = document.createElement('p');
-    date.className = 'text-sm text-gray-500';
+    date.className = 'text-sm text-ink font-medium';
     date.innerText = weekDay;
 
     const weatherContainer = document.createElement('div');
-    weatherContainer.className = 'flex gap-2';
+    weatherContainer.className =
+      'flex items-center gap-2 min-w-0 max-sm:hidden';
 
     const iconCondition = icon;
-    const weatherIcon = WeatherIcon(iconCondition);
+    const weatherIcon = WeatherIcon(iconCondition, {
+      strokeWidth: 1.5,
+      color: 'var(--color-ink)',
+    });
 
     const condition = document.createElement('p');
-    condition.className = 'text-sm text-gray-500 max-sm:hidden';
+    condition.className =
+      'text-xs text-muted font-mono uppercase tracking-wider truncate';
     condition.innerText = conditions;
 
     weatherContainer.append(...[weatherIcon, condition]);
 
     const tempSpan = document.createElement('span');
-    tempSpan.className = 'ml-2 font-semibold';
+    tempSpan.className = 'text-sm text-ink font-light tabular-nums';
     tempSpan.innerText = `${Math.round(temp)}°`;
 
     dayContainer.appendChild(date);
     dayContainer.appendChild(weatherContainer);
-    // dayContainer.appendChild(condition);
     dayContainer.appendChild(tempSpan);
 
     weaklyContainer.appendChild(dayContainer);
