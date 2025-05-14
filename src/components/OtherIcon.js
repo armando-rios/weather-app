@@ -48,7 +48,8 @@ export const OtherIcon = name => {
       setIcon = createElement(Search);
   }
 
-  setIcon.setAttribute('color', '#3b82f6');
+  setIcon.setAttribute('color', 'var(--color-ink)');
+  setIcon.setAttribute('stroke-width', '1.5');
 
   return setIcon;
 };

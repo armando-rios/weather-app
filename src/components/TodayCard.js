@@ -3,18 +3,20 @@ import { OtherIcon } from './OtherIcon.js';
 export const TodayCard = (text, data) => {
   const box = document.createElement('div');
   box.className =
-    'flex flex-col items-center p-2 gap-2 w-32 h-34 bg-blue-50 rounded-md';
+    'bg-surface border border-line rounded-lg px-4 py-4 flex flex-col gap-2 min-w-[140px]';
 
   const header = document.createElement('div');
-  header.className = 'flex items-center';
+  header.className = 'flex items-center gap-2';
   const iconTitle = OtherIcon(text);
-  const title = document.createElement('p');
-  header.append(...[iconTitle, title]);
-  const textData = document.createElement('p');
-  title.className = 'text-lg text-blue-500 font-semibold text-center';
+  const title = document.createElement('span');
+  title.className = 'label-mono';
   title.textContent = text;
+  header.append(...[iconTitle, title]);
+
+  const textData = document.createElement('p');
   textData.textContent = data;
-  textData.className = 'text-3xl text-center font-bold';
+  textData.className =
+    'text-2xl font-light tracking-tight text-ink tabular-nums';
 
   box.append(...[header, textData]);
 
