@@ -29,8 +29,9 @@ export const WeatherIcon = (condition, props = {}) => {
     moon: '#34495e', // Azul oscuro para noche
   };
 
-  const { color, ...rest } = props;
+  const { color, strokeWidth = 1.5, ...rest } = props;
   const finalColor = color ?? null;
+  const mergedProps = { strokeWidth, ...rest };
 
   let iconElement;
   let iconColor;
@@ -41,13 +42,13 @@ export const WeatherIcon = (condition, props = {}) => {
     case 'showers-rain':
     case 'rain-showers-day':
     case 'rain-showers-night':
-      iconElement = createElement(CloudRain, rest);
+      iconElement = createElement(CloudRain, mergedProps);
       iconColor = colors.rain;
       break;
 
     // Llovizna
     case 'drizzle':
-      iconElement = createElement(CloudDrizzle, rest);
+      iconElement = createElement(CloudDrizzle, mergedProps);
       iconColor = colors.rain;
       break;
 
@@ -56,7 +57,7 @@ export const WeatherIcon = (condition, props = {}) => {
     case 'thunder-showers-day':
     case 'thunder-showers-night':
     case 'thunder':
-      iconElement = createElement(CloudLightning, rest);
+      iconElement = createElement(CloudLightning, mergedProps);
       iconColor = colors.storm;
       break;
 
@@ -67,56 +68,56 @@ export const WeatherIcon = (condition, props = {}) => {
     case 'sleet':
     case 'freezing-drizzle':
     case 'freezing-rain':
-      iconElement = createElement(CloudSnow, rest);
+      iconElement = createElement(CloudSnow, mergedProps);
       iconColor = colors.snow;
       break;
 
     // Niebla
     case 'fog':
     case 'haze':
-      iconElement = createElement(CloudFog, rest);
+      iconElement = createElement(CloudFog, mergedProps);
       iconColor = colors.fog;
       break;
 
     // Viento
     case 'wind':
-      iconElement = createElement(Wind, rest);
+      iconElement = createElement(Wind, mergedProps);
       iconColor = colors.wind;
       break;
 
     // Despejado
     case 'clear-day':
-      iconElement = createElement(Sun, rest);
+      iconElement = createElement(Sun, mergedProps);
       iconColor = colors.sun;
       break;
 
     // Noche despejada
     case 'clear-night':
-      iconElement = createElement(Moon, rest);
+      iconElement = createElement(Moon, mergedProps);
       iconColor = colors.moon;
       break;
 
     // Parcialmente nublado
     case 'partly-cloudy-day':
-      iconElement = createElement(CloudSun, rest);
+      iconElement = createElement(CloudSun, mergedProps);
       iconColor = colors.cloud;
       break;
 
     // Parcialmente nublado noche
     case 'partly-cloudy-night':
-      iconElement = createElement(CloudMoon, rest);
+      iconElement = createElement(CloudMoon, mergedProps);
       iconColor = colors.moon;
       break;
 
     // Nublado
     case 'cloudy':
-      iconElement = createElement(Cloud, rest);
+      iconElement = createElement(Cloud, mergedProps);
       iconColor = colors.cloud;
       break;
 
     // Default para cualquier otro caso
     default:
-      iconElement = createElement(Cloud, rest);
+      iconElement = createElement(Cloud, mergedProps);
       iconColor = colors.cloud;
   }
 

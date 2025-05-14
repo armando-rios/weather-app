@@ -4,35 +4,34 @@ export const HourlyForecast = data => {
   const hourlyContainer = document.createElement('div');
 
   hourlyContainer.className =
-    'flex flex-col  overflow-auto items-center bg-white p-4 items-start border border-gray-200 rounded-xl';
+    'bg-surface border border-line rounded-lg px-5 py-5 flex flex-col gap-4 w-full';
 
   const title = document.createElement('h3');
-  title.className = 'text-xl font-semibold mb-2';
+  title.className = 'label-mono';
   title.innerText = 'Hourly Forecast';
   hourlyContainer.appendChild(title);
 
   const hours = data.hours;
 
   const horlyDataContainer = document.createElement('div');
-  horlyDataContainer.className = 'flex gap-4 justify-center m-auto';
-
-  const currentHour = new Date().getHours();
+  horlyDataContainer.className = 'flex gap-4 overflow-x-auto pb-2 -mx-1 px-1';
 
   hours.forEach(hour => {
     const { datetime, icon, temp, conditions } = hour;
 
     const hourContainer = document.createElement('div');
     hourContainer.className =
-      'flex flex-col items-center gap-2 w-32 rounded-md';
+      'flex flex-col items-center gap-2 min-w-[88px] px-2 py-2 rounded-md hover:bg-canvas transition-colors';
 
     const iconCondition = icon;
-    const weatherIcon = WeatherIcon(iconCondition);
+    const weatherIcon = WeatherIcon(iconCondition, {
+      strokeWidth: 1.5,
+      color: 'var(--color-ink)',
+    });
 
     const hourText = document.createElement('p');
 
     const hourValue = parseInt(datetime.split(':')[0]);
-
-    // let formattedTime = '';
 
     const date = new Date();
     date.setHours(hourValue);
@@ -43,15 +42,18 @@ export const HourlyForecast = data => {
       hour12: true,
     });
 
-    hourText.className = 'text-lg text-blue-500 font-semibold text-center';
+    hourText.className =
+      'font-mono text-[11px] uppercase tracking-wider text-muted';
     hourText.textContent = formattedTime;
 
     const tempData = document.createElement('p');
-    tempData.className = 'text-2xl text-center font-bold';
+    tempData.className =
+      'text-lg font-light tracking-tight text-ink tabular-nums';
     tempData.textContent = `${temp}°C`;
 
     const condition = document.createElement('p');
-    condition.className = 'text-sm text-gray-500';
+    condition.className =
+      'text-[11px] text-muted font-mono uppercase tracking-wider text-center max-w-[88px]';
     condition.innerText = conditions;
 
     hourContainer.append(...[hourText, weatherIcon, tempData, condition]);
