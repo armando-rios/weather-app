@@ -46,7 +46,7 @@
       <!-- Sidebar - hidden on mobile until toggled -->
       <div
         id="sidebar"
-        class="hidden lg:flex lg:w-64 bg-canvas border-r border-line flex-col h-full fixed inset-y-0 left-0 z-30 lg:relative lg:z-0"
+        class="hidden lg:flex w-72 lg:w-64 bg-canvas border-r border-line flex-col h-full fixed inset-y-0 left-0 z-30 lg:relative lg:z-0"
       >
         <div class="px-5 pt-6 pb-5">
           <span class="font-mono text-[10px] tracking-[0.3em] text-muted"
@@ -199,7 +199,9 @@
       </div>
 
       <!-- Main Content -->
-      <div class="flex-grow flex flex-col h-full min-h-0 overflow-hidden">
+      <div
+        class="flex-grow flex flex-col h-full min-h-0 overflow-hidden w-full max-w-full"
+      >
         <!-- Header - This will have some dynamic content but the structure is static -->
         <div class="bg-canvas border-b border-line px-6 py-4 shrink-0">
           <div
@@ -234,7 +236,7 @@
         <!-- Content Area - Container for dynamic content -->
         <div
           id="main-content"
-          class="flex flex-col flex-1 min-h-0 overflow-auto px-6 py-5 gap-5"
+          class="flex flex-col flex-1 min-h-0 overflow-auto px-6 py-5 gap-5 max-w-[88rem] mx-auto w-full"
         >
           <!-- This section will be populated dynamically -->
           <div

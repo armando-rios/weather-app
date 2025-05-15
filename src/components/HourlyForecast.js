@@ -12,9 +12,9 @@ export const HourlyForecast = data => {
   hourlyContainer.appendChild(title);
 
   const hours = data.hours;
-
   const horlyDataContainer = document.createElement('div');
-  horlyDataContainer.className = 'flex gap-4 overflow-x-auto pb-2 -mx-1 px-1';
+  horlyDataContainer.className =
+    'flex gap-4 overflow-x-auto pb-2 -mx-1 px-1 max-w-full';
 
   hours.forEach(hour => {
     const { datetime, icon, temp, conditions } = hour;
