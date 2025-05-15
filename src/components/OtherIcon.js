@@ -18,38 +18,37 @@ export const OtherIcon = name => {
 
   switch (icon) {
     case 'wind':
-      setIcon = createElement(Wind);
+      setIcon = createElement(Wind, { strokeWidth: 1.5 });
       break;
     case 'humidity':
-      setIcon = createElement(Droplets);
+      setIcon = createElement(Droplets, { strokeWidth: 1.5 });
       break;
     case 'feels like':
-      setIcon = createElement(Thermometer);
+      setIcon = createElement(Thermometer, { strokeWidth: 1.5 });
       break;
     case 'visibility':
-      setIcon = createElement(Eye);
+      setIcon = createElement(Eye, { strokeWidth: 1.5 });
       break;
     case 'direction':
-      setIcon = createElement(Compass);
+      setIcon = createElement(Compass, { strokeWidth: 1.5 });
       break;
     case 'sunrise':
-      setIcon = createElement(Sunrise);
+      setIcon = createElement(Sunrise, { strokeWidth: 1.5 });
       break;
     case 'sunset':
-      setIcon = createElement(Sunset);
+      setIcon = createElement(Sunset, { strokeWidth: 1.5 });
       break;
     case 'uv index':
-      setIcon = createElement(Sun);
+      setIcon = createElement(Sun, { strokeWidth: 1.5 });
       break;
     case 'pressure':
-      setIcon = createElement(Cloud);
+      setIcon = createElement(Cloud, { strokeWidth: 1.5 });
       break;
     default:
-      setIcon = createElement(Search);
+      setIcon = createElement(Search, { strokeWidth: 1.5 });
   }
 
   setIcon.setAttribute('color', 'var(--color-ink)');
-  setIcon.setAttribute('stroke-width', '1.5');
 
   return setIcon;
 };
