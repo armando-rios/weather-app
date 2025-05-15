@@ -5,7 +5,7 @@ import { WeatherIcon } from './WeatherIcon.js';
 export const Location = locationName => {
   const locationButton = document.createElement('button');
   locationButton.className =
-    'w-full flex items-center justify-between gap-3 px-2 py-2.5 hover:bg-canvas transition-colors rounded-md';
+    'w-full flex items-center justify-between gap-3 px-2 py-2.5 hover:bg-canvas transition-colors duration-150 rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas';
 
   const nameContainer = document.createElement('div');
   nameContainer.className = 'flex flex-col text-start gap-0.5 min-w-0';
