@@ -6,7 +6,7 @@ export const SavedLocations = (savedLocations, mode = 'add') => {
   if (!savedLocations || savedLocations.length === 0) {
     const emptyMessage = document.createElement('p');
     emptyMessage.className =
-      'text-center text-muted font-mono text-xs uppercase tracking-widest p-4';
+      'text-center text-ink-soft font-mono uppercase tracking-wider text-[11px] p-4';
     emptyMessage.innerText = 'No saved locations';
     savedLocationsContainer.appendChild(emptyMessage);
     return;

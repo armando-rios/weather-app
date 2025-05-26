@@ -16,7 +16,7 @@ export const TodayCard = (text, data) => {
   const textData = document.createElement('p');
   textData.textContent = data;
   textData.className =
-    'text-2xl font-light tracking-tight text-ink tabular-nums';
+    'text-2xl font-normal tracking-tight text-ink tabular-nums';
 
   box.append(...[header, textData]);
 

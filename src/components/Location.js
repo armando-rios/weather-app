@@ -20,7 +20,7 @@ export const Location = locationName => {
 
   const loadingText = document.createElement('span');
   loadingText.className =
-    'text-xs text-muted font-mono uppercase tracking-wider';
+    'text-[11px] font-mono uppercase tracking-wider text-ink-soft';
   loadingText.innerText = 'Loading…';
   nameContainer.appendChild(loadingText);
 

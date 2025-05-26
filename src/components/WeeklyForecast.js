@@ -39,13 +39,13 @@ export const WeeklyForecast = days => {
 
     const condition = document.createElement('p');
     condition.className =
-      'text-xs text-muted font-mono uppercase tracking-wider truncate';
+      'text-xs text-ink-soft font-mono uppercase tracking-wider truncate';
     condition.innerText = conditions;
 
     weatherContainer.append(...[weatherIcon, condition]);
 
     const tempSpan = document.createElement('span');
-    tempSpan.className = 'text-sm text-ink font-light tabular-nums';
+    tempSpan.className = 'text-sm text-ink font-normal tabular-nums';
     tempSpan.innerText = `${Math.round(temp)}°`;
 
     dayContainer.appendChild(date);

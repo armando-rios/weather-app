@@ -43,17 +43,17 @@ export const HourlyForecast = data => {
     });
 
     hourText.className =
-      'font-mono text-[11px] uppercase tracking-wider text-muted';
+      'font-mono text-[11px] uppercase tracking-wider text-ink-soft';
     hourText.textContent = formattedTime;
 
     const tempData = document.createElement('p');
     tempData.className =
-      'text-lg font-light tracking-tight text-ink tabular-nums';
+      'text-lg font-normal tracking-tight text-ink tabular-nums';
     tempData.textContent = `${temp}°C`;
 
     const condition = document.createElement('p');
     condition.className =
-      'text-[11px] text-muted font-mono uppercase tracking-wider text-center max-w-[88px]';
+      'text-[11px] text-ink-soft font-mono uppercase tracking-wider text-center max-w-[88px]';
     condition.innerText = conditions;
 
     hourContainer.append(...[hourText, weatherIcon, tempData, condition]);

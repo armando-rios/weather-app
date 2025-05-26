@@ -34,7 +34,7 @@ h4 {
 }
 
 .label-mono {
-  @apply uppercase font-mono text-[11px] tracking-[0.18em] text-muted;
+  @apply uppercase font-mono text-[11px] tracking-[0.18em] text-ink-soft font-medium;
 }
 
 .hairline {
