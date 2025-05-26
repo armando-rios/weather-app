@@ -19,14 +19,14 @@ export const WeatherIcon = (condition, props = {}) => {
   const icon = condition ? condition.toLowerCase() : '';
 
   const colors = {
-    rain: '#2c82c9', // Azul para lluvia
-    storm: '#5c3566', // Púrpura para tormentas
-    snow: '#95a5a6', // Gris claro para nieve
-    fog: '#bdc3c7', // Gris muy claro para niebla
-    sun: '#f39c12', // Amarillo/naranja para sol
-    cloud: '#7f8c8d', // Gris para nubes
-    wind: '#3498db', // Azul claro para viento
-    moon: '#34495e', // Azul oscuro para noche
+    rain: '#ece6db', // Lluvia — ink
+    storm: '#ece6db', // Tormentas — ink
+    snow: '#ece6db', // Nieve — ink
+    fog: '#7a7468', // Niebla — muted
+    sun: '#ece6db', // Sol — ink
+    cloud: '#ece6db', // Nubes — ink
+    wind: '#ece6db', // Viento — ink
+    moon: '#ece6db', // Noche — ink
   };
 
   const { color, strokeWidth = 1.5, ...rest } = props;
