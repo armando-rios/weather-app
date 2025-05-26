@@ -9,7 +9,7 @@ export const CurrentWeatherHeader = (resolvedAddress, currentConditions) => {
   currentLocation.textContent = resolvedAddress;
   currentDate.textContent = new Date().toString();
   currentTemp.className =
-    'flex gap-3 items-center text-4xl font-light tracking-tighter text-ink';
+    'flex gap-3 items-center text-4xl font-normal tracking-tighter text-ink';
   currentTemp.innerHTML = '';
   const icon = WeatherIcon(currentConditions.icon, {
     size: 28,
@@ -17,7 +17,7 @@ export const CurrentWeatherHeader = (resolvedAddress, currentConditions) => {
     color: 'var(--color-ink)',
   });
   const tempSpan = document.createElement('span');
-  tempSpan.className = 'tabular-nums';
+  tempSpan.className = 'tabular-nums font-mono';
   tempSpan.textContent = `${currentConditions.temp}°C`;
   currentTemp.appendChild(icon);
   currentTemp.appendChild(tempSpan);
