@@ -25,7 +25,7 @@ export const WeeklyForecast = days => {
 
     const dayContainer = document.createElement('div');
     dayContainer.className =
-      'w-full grid grid-cols-[1fr_auto_auto] items-center gap-4 px-4 py-3 hover:bg-canvas transition-colors rounded-md';
+      'w-full grid grid-cols-[1fr_auto_auto] items-center gap-4 px-3 py-2.5 hover:bg-canvas transition-colors rounded-md';
 
     const date = document.createElement('p');
     date.className = 'text-sm text-ink font-medium';

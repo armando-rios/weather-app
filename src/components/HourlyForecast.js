@@ -4,7 +4,7 @@ export const HourlyForecast = data => {
   const hourlyContainer = document.createElement('div');
 
   hourlyContainer.className =
-    'bg-surface border border-line rounded-lg px-5 py-4 flex flex-col gap-4 w-full min-h-[180px] min-w-0';
+    'bg-surface border border-line rounded-lg px-4 py-3 flex flex-col gap-4 w-full min-h-[180px] min-w-0';
 
   const title = document.createElement('h3');
   title.className = 'label-mono';
@@ -14,7 +14,7 @@ export const HourlyForecast = data => {
   const hours = data.hours;
   const horlyDataContainer = document.createElement('div');
   horlyDataContainer.className =
-    'flex gap-4 overflow-x-auto overflow-y-hidden pb-2 -mx-1 px-1 max-w-full max-h-[180px]';
+    'flex gap-1.5 overflow-x-auto overflow-y-hidden pb-2 -mx-1 px-1 max-w-full max-h-[180px]';
 
   hours.forEach(hour => {
     const { datetime, icon, temp, conditions } = hour;
