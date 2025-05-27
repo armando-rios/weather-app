@@ -3,12 +3,16 @@ import { WeatherIcon } from './WeatherIcon.js';
 export const WeeklyForecast = days => {
   const weaklyContainer = document.createElement('div');
   weaklyContainer.className =
-    'bg-surface border border-line rounded-lg px-2 py-2 w-full flex flex-col divide-y divide-line';
+    'bg-surface border border-line rounded-lg w-full flex flex-col min-h-0';
 
   const title = document.createElement('h3');
-  title.className = 'label-mono px-2 py-2';
+  title.className = 'label-mono px-4 py-3';
   title.innerText = 'Weekly Forecast';
   weaklyContainer.appendChild(title);
+
+  const listContainer = document.createElement('div');
+  listContainer.className =
+    'flex flex-col divide-y divide-line overflow-y-auto min-h-0 max-h-[280px] sm:max-h-[320px] xl:max-h-[360px]';
 
   days.forEach(day => {
     const { datetime, icon, temp, conditions } = day;
@@ -52,8 +56,10 @@ export const WeeklyForecast = days => {
     dayContainer.appendChild(weatherContainer);
     dayContainer.appendChild(tempSpan);
 
-    weaklyContainer.appendChild(dayContainer);
+    listContainer.appendChild(dayContainer);
   });
+
+  weaklyContainer.appendChild(listContainer);
 
   return weaklyContainer;
 };
