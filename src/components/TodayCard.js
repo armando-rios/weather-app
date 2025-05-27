@@ -3,7 +3,7 @@ import { OtherIcon } from './OtherIcon.js';
 export const TodayCard = (text, data) => {
   const box = document.createElement('div');
   box.className =
-    'bg-surface border border-line rounded-lg px-4 py-4 flex flex-col gap-2 min-w-[140px]';
+    'bg-surface border border-line rounded-lg px-4 py-4 flex flex-col gap-2 min-w-[120px] min-h-[88px]';
 
   const header = document.createElement('div');
   header.className = 'flex items-center gap-2';

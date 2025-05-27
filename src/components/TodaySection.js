@@ -3,14 +3,15 @@ import { TodayCard } from './TodayCard.js';
 export const TodaySection = data => {
   const container = document.createElement('div');
   container.className =
-    'bg-surface border border-line rounded-lg px-5 py-5 w-full flex flex-col gap-4';
+    'bg-surface border border-line rounded-lg px-5 py-4 w-full flex flex-col gap-4 min-h-[180px] min-w-0';
 
   const title = document.createElement('h3');
   title.className = 'label-mono';
   title.innerText = "Today's Highlights";
 
   const weatherData = document.createElement('div');
-  weatherData.className = 'grid grid-cols-2 md:grid-cols-4 gap-3 w-full';
+  weatherData.className =
+    'grid grid-cols-2 md:grid-cols-4 gap-3 w-full min-w-0';
 
   const feelsLike = TodayCard('Feels Like', data.temp);
   const humidity = TodayCard('Humidity', data.humidity + '%');

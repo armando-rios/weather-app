@@ -3,7 +3,7 @@ import { WeatherIcon } from './WeatherIcon.js';
 export const WeeklyForecast = days => {
   const weaklyContainer = document.createElement('div');
   weaklyContainer.className =
-    'bg-surface border border-line rounded-lg w-full flex flex-col min-h-0';
+    'bg-surface border border-line rounded-lg w-full flex flex-col min-h-[260px] max-h-[420px] min-w-0';
 
   const title = document.createElement('h3');
   title.className = 'label-mono px-4 py-3';
