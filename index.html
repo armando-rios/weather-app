@@ -43,7 +43,7 @@
       <!-- Sidebar - hidden on mobile until toggled -->
       <div
         id="sidebar"
-        class="hidden lg:flex w-72 lg:w-64 bg-canvas border-r border-line flex-col h-full fixed inset-y-0 left-0 z-30 lg:relative lg:z-0"
+        class="hidden lg:flex w-72 lg:w-72 bg-canvas border-r border-line flex-col h-full fixed inset-y-0 left-0 z-30 lg:relative lg:z-0"
       >
         <div class="px-5 pt-5 pb-4 border-b border-line">
           <h1 class="text-xl font-medium tracking-tight text-ink">
@@ -98,7 +98,7 @@
           <div class="flex flex-col gap-0.5">
             <button
               id="forecast-btn"
-              class="w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm text-ink bg-canvas border-l border-ink pl-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              class="w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm text-ink bg-surface border-l-2 border-accent pl-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +197,7 @@
               </h1>
               <p
                 id="current-date"
-                class="text-xs font-mono uppercase tracking-wider text-muted text-balance"
+                class="text-xs font-mono uppercase tracking-wider text-ink-soft text-balance"
               >
                 Loading date…
               </p>
@@ -227,7 +227,7 @@
             id="loading-indicator"
             class="flex items-center justify-center min-h-full"
           >
-            <h1 class="text-lg text-wrap text-center text-muted font-light">
+            <h1 class="text-lg text-wrap text-center text-ink-soft font-light">
               No data to display. Please search for a city to get started.
             </h1>
           </div>
