@@ -7,237 +7,241 @@
   </head>
 
   <body class="bg-canvas text-ink font-sans antialiased">
-    <!-- Mobile menu button (visible only on small screens) -->
-    <div
-      class="lg:hidden fixed top-0 left-0 z-30 w-full bg-canvas border-b border-line px-5 py-3 flex items-center justify-between"
-    >
-      <div class="flex flex-col leading-tight">
-        <h1 class="text-xl font-medium tracking-tight text-ink">Weather app</h1>
-        <span class="label-mono mt-0.5">current weather</span>
-      </div>
-      <button
-        id="mobile-menu-button"
-        class="p-2 rounded-md text-ink-soft hover:bg-canvas transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-
-    <div
-      class="flex flex-col lg:flex-row h-screen w-screen overflow-hidden bg-canvas"
-    >
-      <!-- Sidebar - hidden on mobile until toggled -->
+    <div class="flex flex-col h-screen w-screen overflow-hidden bg-canvas">
+      <!-- Mobile menu button (visible only on small screens, in flex flow) -->
       <div
-        id="sidebar"
-        class="hidden lg:flex w-72 lg:w-72 bg-canvas border-r border-line flex-col h-full fixed inset-y-0 left-0 z-30 lg:relative lg:z-0"
+        class="lg:hidden shrink-0 bg-canvas border-b border-line px-5 py-3 flex items-center justify-between"
       >
-        <div class="px-5 pt-5 pb-4 border-b border-line">
+        <div class="flex flex-col leading-tight">
           <h1 class="text-xl font-medium tracking-tight text-ink">
             Weather app
           </h1>
-          <span class="label-mono mt-1 block">current weather</span>
+          <span class="label-mono mt-0.5">current weather</span>
         </div>
-        <!-- Search -->
-        <div class="px-5 py-4 border-b border-line">
-          <form
-            id="search-form"
-            class="flex items-center gap-2 border-b border-line focus-within:border-ink transition-colors duration-150"
-          >
-            <input
-              id="search-input"
-              type="text"
-              placeholder="search for a city…"
-              class="flex-1 min-w-0 bg-transparent border-0 py-2 text-sm text-ink placeholder-muted font-mono tracking-wide focus:outline-none"
-            />
-            <button
-              type="submit"
-              aria-label="Search"
-              class="p-1 -mr-1 text-ink-soft hover:text-ink transition-colors duration-150 focus-visible:outline-none focus-visible:text-ink"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <circle cx="11" cy="11" r="7"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-          </form>
-        </div>
-
-        <!-- Saved Locations with internal scroll -->
-        <div
-          class="px-5 py-4 border-b border-line flex flex-col flex-1 min-h-0"
+        <button
+          id="mobile-menu-button"
+          class="p-2 rounded-md text-ink-soft hover:bg-canvas transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
         >
-          <h3 class="label-mono mb-3">SAVED LOCATIONS</h3>
-          <div
-            id="saved-locations"
-            class="flex flex-col gap-1 overflow-y-auto min-h-0 pr-1"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            <!-- Saved locations will be inserted here dynamically -->
-          </div>
-        </div>
-
-        <!-- Navigation -->
-        <div class="px-5 py-4 mt-auto">
-          <h3 class="label-mono mb-3">MENU</h3>
-          <div class="flex flex-col gap-0.5">
-            <button
-              id="forecast-btn"
-              class="w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm text-ink bg-surface border-l-2 border-accent pl-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="text-ink"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="4"></circle>
-                <line x1="12" y1="2" x2="12" y2="4"></line>
-                <line x1="12" y1="20" x2="12" y2="22"></line>
-                <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line>
-                <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line>
-                <line x1="2" y1="12" x2="4" y2="12"></line>
-                <line x1="20" y1="12" x2="22" y2="12"></line>
-                <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line>
-                <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"></line>
-              </svg>
-              Forecast
-            </button>
-            <button
-              id="radar-btn"
-              disabled
-              class="w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm text-ink-soft hover:bg-canvas transition-colors duration-150 disabled:text-ink-soft disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="text-ink-soft"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="9"></circle>
-                <polygon
-                  points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5 15.5 8.5"
-                ></polygon>
-              </svg>
-              Radar &amp; Maps
-            </button>
-            <button
-              id="settings-btn"
-              disabled
-              class="w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm text-ink-soft hover:bg-canvas transition-colors duration-150 disabled:text-ink-soft disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="text-ink-soft"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="3"></circle>
-                <path
-                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-                ></path>
-              </svg>
-              Settings
-            </button>
-          </div>
-        </div>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
 
-      <!-- Main Content -->
-      <div
-        class="flex-grow flex flex-col h-full min-h-0 overflow-hidden w-full max-w-full"
-      >
-        <!-- Header - This will have some dynamic content but the structure is static -->
-        <div class="bg-canvas border-b border-line px-6 py-3 shrink-0">
+      <div class="flex flex-1 min-h-0 overflow-hidden">
+        <!-- Sidebar - hidden on mobile until toggled -->
+        <div
+          id="sidebar"
+          class="hidden lg:flex w-72 lg:w-72 bg-canvas border-r border-line flex-col h-full fixed inset-y-0 left-0 z-30 lg:relative lg:z-0"
+        >
+          <div class="px-5 pt-5 pb-4 border-b border-line">
+            <h1 class="text-xl font-medium tracking-tight text-ink">
+              Weather app
+            </h1>
+            <span class="label-mono mt-1 block">current weather</span>
+          </div>
+          <!-- Search -->
+          <div class="px-5 py-4 border-b border-line">
+            <form
+              id="search-form"
+              class="flex items-center gap-2 border-b border-line focus-within:border-ink transition-colors duration-150"
+            >
+              <input
+                id="search-input"
+                type="text"
+                placeholder="search for a city…"
+                class="flex-1 min-w-0 bg-transparent border-0 py-2 text-sm text-ink placeholder-muted font-mono tracking-wide focus:outline-none"
+              />
+              <button
+                type="submit"
+                aria-label="Search"
+                class="p-1 -mr-1 text-ink-soft hover:text-ink transition-colors duration-150 focus-visible:outline-none focus-visible:text-ink"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Saved Locations with internal scroll -->
           <div
-            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+            class="px-5 py-4 border-b border-line flex flex-col flex-1 min-h-0"
           >
-            <div class="flex flex-col gap-1">
-              <h1
-                id="current-location"
-                class="text-lg font-medium tracking-tight text-ink text-balance"
-              >
-                Loading…
-              </h1>
-              <p
-                id="current-date"
-                class="text-xs font-mono uppercase tracking-wider text-ink-soft text-balance"
-              >
-                Loading date…
-              </p>
+            <h3 class="label-mono mb-3">SAVED LOCATIONS</h3>
+            <div
+              id="saved-locations"
+              class="flex flex-col gap-1 overflow-y-auto min-h-0 pr-1"
+            >
+              <!-- Saved locations will be inserted here dynamically -->
             </div>
-            <div class="flex items-center gap-3 sm:gap-4">
-              <div
-                id="current-temp"
-                class="flex gap-3 items-center text-4xl font-normal tracking-tighter text-ink"
-              ></div>
-              <p
-                id="current-condition"
-                class="text-xs font-mono uppercase tracking-wider text-ink-soft"
+          </div>
+
+          <!-- Navigation -->
+          <div class="px-5 py-4 mt-auto">
+            <h3 class="label-mono mb-3">MENU</h3>
+            <div class="flex flex-col gap-0.5">
+              <button
+                id="forecast-btn"
+                class="w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm text-ink bg-surface border-l-2 border-accent pl-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
               >
-                --
-              </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-ink"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <line x1="12" y1="2" x2="12" y2="4"></line>
+                  <line x1="12" y1="20" x2="12" y2="22"></line>
+                  <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line>
+                  <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line>
+                  <line x1="2" y1="12" x2="4" y2="12"></line>
+                  <line x1="20" y1="12" x2="22" y2="12"></line>
+                  <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line>
+                  <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"></line>
+                </svg>
+                Forecast
+              </button>
+              <button
+                id="radar-btn"
+                disabled
+                class="w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm text-ink-soft hover:bg-canvas transition-colors duration-150 disabled:text-ink-soft disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-ink-soft"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <polygon
+                    points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5 15.5 8.5"
+                  ></polygon>
+                </svg>
+                Radar &amp; Maps
+              </button>
+              <button
+                id="settings-btn"
+                disabled
+                class="w-full flex items-center gap-3 px-2 py-2 rounded-md text-sm text-ink-soft hover:bg-canvas transition-colors duration-150 disabled:text-ink-soft disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-ink-soft"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                  ></path>
+                </svg>
+                Settings
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Content Area - Container for dynamic content -->
+        <!-- Main Content -->
         <div
-          id="main-content"
-          class="flex flex-col flex-1 min-h-0 overflow-hidden px-6 py-4 gap-4 max-w-[88rem] mx-auto w-full"
+          class="flex-grow flex flex-col h-full min-h-0 overflow-hidden w-full max-w-full"
         >
-          <!-- This section will be populated dynamically -->
+          <!-- Header - This will have some dynamic content but the structure is static -->
+          <div class="bg-canvas border-b border-line px-6 py-3 shrink-0">
+            <div
+              class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+            >
+              <div class="flex flex-col gap-1">
+                <h1
+                  id="current-location"
+                  class="text-lg font-medium tracking-tight text-ink text-balance"
+                >
+                  Loading…
+                </h1>
+                <p
+                  id="current-date"
+                  class="text-xs font-mono uppercase tracking-wider text-ink-soft text-balance"
+                >
+                  Loading date…
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4">
+                <div
+                  id="current-temp"
+                  class="flex gap-3 items-center text-4xl font-normal tracking-tighter text-ink"
+                ></div>
+                <p
+                  id="current-condition"
+                  class="text-xs font-mono uppercase tracking-wider text-ink-soft"
+                >
+                  --
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Area - Container for dynamic content -->
           <div
-            id="loading-indicator"
-            class="flex items-center justify-center min-h-full"
+            id="main-content"
+            class="flex flex-col flex-1 min-h-0 overflow-hidden px-6 py-4 gap-4 max-w-[88rem] mx-auto w-full"
           >
-            <h1 class="text-lg text-wrap text-center text-ink-soft font-light">
-              No data to display. Please search for a city to get started.
-            </h1>
+            <!-- This section will be populated dynamically -->
+            <div
+              id="loading-indicator"
+              class="flex items-center justify-center min-h-full"
+            >
+              <h1
+                class="text-lg text-wrap text-center text-ink-soft font-light"
+              >
+                No data to display. Please search for a city to get started.
+              </h1>
+            </div>
           </div>
         </div>
       </div>
