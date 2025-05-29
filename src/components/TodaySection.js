@@ -3,7 +3,7 @@ import { TodayCard } from './TodayCard.js';
 export const TodaySection = data => {
   const container = document.createElement('div');
   container.className =
-    'bg-surface border border-line rounded-lg px-4 py-3 w-full flex flex-col gap-4 min-h-[180px] min-w-0';
+    'bg-surface border border-line rounded-lg px-5 py-4 w-full flex flex-col gap-3 min-h-0 min-w-0 shrink-0 overflow-hidden';
 
   const title = document.createElement('h3');
   title.className = 'label-mono';
@@ -11,7 +11,7 @@ export const TodaySection = data => {
 
   const weatherData = document.createElement('div');
   weatherData.className =
-    'grid grid-cols-2 md:grid-cols-4 gap-3 w-full min-w-0';
+    'grid grid-cols-2 md:grid-cols-4 gap-3 w-full min-w-0 max-h-[220px] sm:max-h-[260px] md:max-h-none overflow-y-auto md:overflow-visible pr-1';
 
   const feelsLike = TodayCard('Feels Like', data.temp);
   const humidity = TodayCard('Humidity', data.humidity + '%');
