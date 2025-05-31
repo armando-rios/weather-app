@@ -1,11 +1,13 @@
 import { renderWeather } from '../views/renderWeather.js';
 import { getWeather } from '../api/weatherService.js';
 import { WeatherIcon } from './WeatherIcon.js';
+import { highlightActiveLocation } from '../utils/highlightActiveLocation.js';
 
 export const Location = locationName => {
   const locationButton = document.createElement('button');
+  locationButton.dataset.location = locationName;
   locationButton.className =
-    'w-full flex items-center justify-between gap-3 px-2 py-2.5 hover:bg-canvas transition-colors duration-150 rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas';
+    'location-button w-full flex items-center justify-between gap-3 px-2 py-2.5 hover:bg-line transition-colors duration-150 rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas';
 
   const nameContainer = document.createElement('div');
   nameContainer.className = 'flex flex-col text-start gap-0.5 min-w-0';
@@ -64,6 +66,7 @@ export const Location = locationName => {
 
   locationButton.addEventListener('click', () => {
     try {
+      highlightActiveLocation(locationName);
       renderWeather(locationName);
     } catch (error) {
       console.error('Error al cargar el clima para', locationName, ':', error);
