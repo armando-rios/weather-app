@@ -11,7 +11,7 @@ export const TodaySection = data => {
 
   const weatherData = document.createElement('div');
   weatherData.className =
-    'grid grid-cols-2 md:grid-cols-4 gap-3 w-full min-w-0 max-h-[220px] sm:max-h-[260px] md:max-h-none overflow-y-auto md:overflow-visible pr-1';
+    'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 w-full min-w-0 max-h-[220px] sm:max-h-[260px] md:max-h-none overflow-y-auto md:overflow-visible pr-1';
 
   const feelsLike = TodayCard('Feels Like', data.temp);
   const humidity = TodayCard('Humidity', data.humidity + '%');
